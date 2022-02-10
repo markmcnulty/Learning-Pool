@@ -1,0 +1,33 @@
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2 style="text-align:center"><strong>List All Users</strong></h2>
+    <table class="table table-bordered">
+      <thead>
+        <!-- Adding the headings for the user table -->
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Looping through all users and displaying them within a table -->
+        <tr *ngFor="let user of allUsers" (click)="editUser()" (mouseover)="highlightRow(user)"
+          [ngClass]="{'highlight' : user.fname == selectedRow}">
+          <!-- Displaying the details from array using string interpollation -->
+          <td>{{user.fname}}</td>
+          <td>{{user.lname}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phone_number}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>

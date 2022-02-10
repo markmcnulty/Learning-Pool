@@ -1,0 +1,17 @@
+  <nav role="navigation" class="navbar navbar-expand-lg navbar-light bg-light">
+  <img
+    src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F78735255%2F4573661076%2F2%2Foriginal.png?w=225&auto=format%2Ccompress&q=75&sharp=10&s=3759dbc3868ef0841043165f4176099c"
+    width="90" height="90" alt="">
+  <button type="button" value="Add User" [routerLink]="['../add-user']" class="btn"><strong>Add User</strong></button>
+  <button type="button" value="Delete User" [routerLink]="['../delete-user']" class="btn"><strong>Delete User</strong></button>
+  <button type="button" value="List All Users" [routerLink]="['../list-users']" class="btn"><strong>List All Users</strong></button>
+
+  <!-- Adding a Search button that will search for a single user by ID -->
+  <!-- Added a placeholder so user knows what the search bar is for -->
+  <form class="form-inline" (ngSubmit)="onSubmit()" #contactForm="ngForm" novalidate>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search User by ID" aria-label="Search"
+      [(ngModel)]="user._id" name="id" #id="ngModel">
+    <button class="btn btn-outline-success my-2 my-sm-0" [disabled]="!contactForm.form.valid" type="submit">Search</button>
+  </form>
+
+</nav>

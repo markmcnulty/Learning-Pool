@@ -1,0 +1,87 @@
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div [hidden]="submitted">
+      <h1 style="text-align:center"><strong>Add User</strong></h1>
+
+      <form (ngSubmit)="onSubmit()" #contactForm="ngForm" novalidate>
+        <!-- first name -->
+        <!-- Setting first name to required and adding a max length of 255 chars -->
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" class="form-control" id="fname" required maxlength="255" [(ngModel)]="user.fname"
+            name="fname" #fname="ngModel" aria-label="First Name">
+          <div [hidden]="fname.valid || fname.pristine" class="alert alert-danger">
+            First name is required!
+          </div>
+        </div>
+        <!-- last name -->
+        <!-- Setting last name to required and adding a max length of 255 chars -->
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" class="form-control" id="lname" required maxlength="255" [(ngModel)]="user.lname"
+            name="lname" #lname="ngModel" aria-label="Last Name">
+          <div [hidden]="lname.valid || lname.pristine" class="alert alert-danger">
+            Last name is required!
+          </div>
+        </div>
+        <!-- Email -->
+        <!-- Adding a ReGex pattern to check for valid email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            [(ngModel)]="user.email" name="email" #email="ngModel" aria-label="Email">
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            Valid email Required! i.e abc@gmail.com
+          </div>
+        </div>
+        <!-- Phone Number -->
+        <!-- Adding a ReGex pattern to check for valid phone number & setting a min length of 10-->
+        <div class="form-group">
+          <label for="phone_number">Phone Number</label>
+          <input type="tel" class="form-control" id="phone_number" required pattern="[- +()0-9]+" minlength="10"
+            [(ngModel)]="user.phone_number" name="phone_number" #phone_number="ngModel" aria-label="Phone Number">
+          <div [hidden]="phone_number.valid || phone_number.pristine" class="alert alert-danger">
+            Phone Number is required!
+          </div>
+        </div>
+        <!-- Disable the submit button until all the requirements are met -->
+        <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid">Submit</button>
+      </form>
+    </div>
+
+    <div [hidden]="!submitted">
+      <h2>User Added!!</h2>
+      <div class="row">
+        <div class="col-xs-3">First Name</div>
+        <div class="col-xs-9">{{ user.fname }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Last Name</div>
+        <div class="col-xs-9">{{ user.lname }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Email</div>
+        <div class="col-xs-9">{{ user.email }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Phone Number</div>
+        <div class="col-xs-9">{{ user.phone_number }}</div>
+      </div>
+      <br>
+      <button type="button" class="btn btn-default" (click)="newUser(); contactForm.reset()"
+        [routerLink]="['../add-user']">New User</button>
+      <button type="button" class="btn btn-primary" value="List All Users" [routerLink]="['../list-users']"
+        class="btn">List All Users</button>
+      <div>
+        <ul>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
